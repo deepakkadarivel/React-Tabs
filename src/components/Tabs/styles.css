@@ -1,0 +1,35 @@
+.Tabs {
+  list-style: none;
+  display: flex;
+  border-bottom: 2px solid #cccccc;
+  margin: 24px 8px;
+  padding: 0;
+}
+
+.Tabs-Item {
+  padding: 8px 16px;
+  margin: 0 4px;
+  letter-spacing: 0.6px;
+  font-size: 14px;
+}
+
+.Tabs-Item > a {
+  color: #888888;
+  text-decoration: none;
+}
+
+.Tabs-Item--current {
+  font-weight: 500;
+  background: #ffffff;
+  border: 2px solid #cccccc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom: 0;
+  position: relative;
+  top: 2px;
+}
+
+.Tabs-Item--current > a {
+  color: #000000;
+  text-decoration: none;
+}
