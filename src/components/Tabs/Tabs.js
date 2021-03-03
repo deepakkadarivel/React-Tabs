@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import cx from "classnames";
 import { useRouteMatch, Link } from "react-router-dom";
 import { useQuery } from "../../utils";
@@ -12,8 +13,8 @@ const Tabs = ({ content }) => {
   const [activeTab, setActiveTab] = useState(null);
 
   const handleTabChange = useCallback(() => {
-    const selectedTab = content.find((t) => t.key === tab);
-    setActiveTab(selectedTab ? selectedTab : content[0]);
+    const selectedTab = content.find((t) => t.key === tab) || content[0];
+    setActiveTab(selectedTab);
   }, [tab, content]);
 
   useEffect(() => {
@@ -27,6 +28,7 @@ const Tabs = ({ content }) => {
           const isActive = activeTab?.key === tab.key;
           return (
             <li
+              data-testid={`t-${tab.key}`}
               className={cx("Tabs-Item", { "Tabs-Item--current": isActive })}
               key={tab.key}
             >
@@ -36,9 +38,21 @@ const Tabs = ({ content }) => {
         })}
       </ul>
 
-      <div className="Tab-Content">{activeTab?.content}</div>
+      <div data-testid="t-tabContent" className="Tab-Content">{activeTab?.content}</div>
     </div>
   );
 };
+
+Tabs.propTypes = {
+  content: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    name: PropTypes.string,
+    content: PropTypes.any
+  })).isRequired
+}
+
+Tabs.defaultProps = {
+  content: []
+}
 
 export { Tabs };

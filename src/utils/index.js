@@ -1,2 +1,3 @@
 import { useQuery } from "./router";
-export { useQuery };
+import { renderWithRouter, click } from "./testHelpers";
+export { useQuery , renderWithRouter, click};
